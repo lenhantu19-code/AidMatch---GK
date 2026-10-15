@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AidMatch - Bảng ghép & Phân bổ</title>
+    <!-- Kết nối đến biểu tượng icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="webgk.css" />
+  </head>
+  <body>
+    <!-- 1. HEADER PHÍA TRÊN -->
+    <header class="header">
+      <div class="header-container">
+        <div
+          class="brand-box"
+          onclick="showToast('Về trang chủ AidMatch', 'info')"
+        >
+          <button onclick="toggleMobileSidebar()" class="menu-btn lg-hidden">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="brand-logo">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <span class="brand-title">AidMatch</span>
+        </div>
+
+        <div class="header-right">
+          <button
+            onclick="showToast('Bạn có 3 thông báo phân bổ mới', 'info')"
+            class="bell-btn"
+          >
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge-dot"></span>
+          </button>
+
+          <div class="user-profile">
+            <div class="avatar">LH</div>
+            <div class="user-info md-block">
+              <div class="user-name">Lê Hà</div>
+              <div class="user-role">Điều phối miền Trung</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. APP CONTAINER (CHỨA SIDEBAR VÀ MAIN CONTENT) -->
+    <div class="app-container">
+      <!-- Sidebar Backdrop Mobile -->
+      <div
+        id="sidebarBackdrop"
+        onclick="toggleMobileSidebar()"
+        class="backdrop"
+      ></div>
+
+      <!-- Sidebar Bên Trái -->
+      <aside id="appSidebar" class="sidebar">
+        <div class="sidebar-content">
+          <div>
+            <div class="sidebar-label">KHÔNG GIAN LÀM VIỆC</div>
+            <div class="sidebar-sublabel">
+              <i class="fa-solid fa-user-gear"></i> Điều phối viên
+            </div>
+            <nav class="nav-menu">
+              <a
+                href="#"
+                onclick="showToast('Chuyển sang Duyệt nhu cầu', 'info')"
+                class="nav-link"
+              >
+                <span class="nav-link-text"
+                  ><i class="fa-solid fa-clipboard-check"></i> Duyệt nhu
+                  cầu</span
+                >
+                <span class="counter">4</span>
+              </a>
+              <a
+                href="#"
+                onclick="showToast('Chuyển sang Chi tiết xét duyệt', 'info')"
+                class="nav-link"
+              >
+                <span class="nav-link-text"
+                  ><i class="fa-solid fa-file-circle-check"></i> Chi tiết xét
+                  duyệt</span
+                >
+              </a>
+              <a href="#" class="nav-link active">
+                <span class="nav-link-text"
+                  ><i class="fa-solid fa-network-wired"></i> Bảng ghép & Phân
+                  bổ</span
+                >
+              </a>
+              <a
+                href="#"
+                onclick="showToast('Chuyển sang Theo dõi phân bổ', 'info')"
+                class="nav-link"
+              >
+                <span class="nav-link-text"
+                  ><i class="fa-solid fa-truck-ramp-box"></i> Theo dõi phân
+                  bổ</span
+                >
+              </a>
+            </nav>
+          </div>
+
+          <div class="sidebar-system">
+            <div class="sidebar-label">HỆ THỐNG</div>
+            <nav class="nav-menu">
+              <a
+                href="#"
+                onclick="showToast('Trung tâm thông báo', 'info')"
+                class="nav-link"
+              >
+                <span class="nav-link-text"
+                  ><i class="fa-regular fa-bell"></i> Trung tâm thông báo</span
+                >
+              </a>
+              <a
+                href="#"
+                onclick="showToast('Hồ sơ & Cài đặt', 'info')"
+                class="nav-link"
+              >
+                <span class="nav-link-text"
+                  ><i class="fa-solid fa-sliders"></i> Hồ sơ & Cài đặt</span
+                >
+              </a>
+              <a
+                href="#"
+                onclick="showToast('Khám phá nhu cầu', 'info')"
+                class="nav-link"
+              >
+                <span class="nav-link-text"
+                  ><i class="fa-solid fa-compass"></i> Khám phá nhu cầu</span
+                >
+              </a>
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Bên Phải -->
+      <main class="main-content">
+        <div class="page-header">
+          <h1 class="page-title">Bảng ghép & Phân bổ</h1>
+          <p class="page-subtitle">
+            <span class="tag-ai">AI-1</span>
+            <span
+              >Gợi ý có giải thích. Điều phối viên phê duyệt số lượng và nhà tài
+              trợ cuối cùng.</span
+            >
+          </p>
+        </div>
+
+        <!-- CARD 1: Đầu vào ghép nguồn lực -->
+        <div class="card">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-sliders"></i> Đầu vào ghép nguồn lực</h2>
+          </div>
+          <div class="grid-3">
+            <div class="form-group">
+              <label>NHU CẦU ĐÃ DUYỆT</label>
+              <select
+                id="requestSelect"
+                onchange="updateMatchingInput()"
+                class="form-control"
+              >
+                <option value="NC-024" selected>
+                  NC-024 - 500 bộ nhu yếu phẩm
+                </option>
+                <option value="NC-033">
+                  NC-033 - 200 bộ nhu yếu phẩm (Hải Sơn)
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>KHU VỰC</label>
+              <select id="regionSelect" class="form-control">
+                <option value="Quảng Trị" selected>Quảng Trị</option>
+                <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>HẠN GIAO TỐI ĐA</label>
+              <input
+                type="text"
+                id="deadlineInput"
+                value="15/10/2026"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="card-actions">
+            <button onclick="triggerAIRanking()" class="btn btn-teal">
+              <i class="fa-solid fa-bolt"></i> Xếp hạng nguồn lực
+            </button>
+            <div class="status-box">
+              <span id="matchingStatusText" class="status-text">
+                <span class="dot-pulse"></span> Đang cập nhật khi đổi đầu vào...
+              </span>
+              <button
+                onclick="showToast('Chọn nguồn lực thủ công', 'info')"
+                class="btn-link"
+              >
+                Chọn nguồn lực thủ công
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: 4 Thẻ Thống Kê (Hover nổi lên) -->
+        <div class="grid-4">
+          <div class="stat-card">
+            <div class="stat-title">ĐÃ DUYỆT</div>
+            <div class="stat-value">500 bộ</div>
+            <span class="badge-sky">NC-024</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-title">ĐÃ PHÂN BỔ</div>
+            <div class="stat-value">400 bộ</div>
+            <span class="badge-teal">PB-032 · CK-018</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-title">ĐÃ NHẬN</div>
+            <div class="stat-value">300 bộ</div>
+            <div class="stat-desc">Không trừ thêm khỏi đã phân bổ</div>
+          </div>
+
+          <div class="stat-card border-green">
+            <div class="stat-title">TỐI ĐA PHÂN BỔ MỚI</div>
+            <div class="stat-value text-green">100 bộ</div>
+            <div class="stat-desc font-mono">500 - 400 = 100</div>
+          </div>
+        </div>
+
+        <!-- Bố cục lưới 2 Cột -->
+        <div class="grid-layout">
+          <!-- Cột Trái -->
+          <div class="left-col">
+            <div class="card">
+              <div class="card-header space-between">
+                <div>
+                  <span class="small-label">XẾP HẠNG SỐ 1</span>
+                  <h2>Nguồn lực xếp hạng cho NC-024</h2>
+                </div>
+                <span class="badge-success"
+                  ><span class="dot-pulse"></span> Ưu tiên · 86 / 100 · Tin cậy
+                  cao</span
+                >
+              </div>
+
+              <h3 class="donor-title">NL-011 · Quỹ Đồng Hành</h3>
+
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width: 35%">Tiêu chí</th>
+                      <th style="width: 65%">Giải thích phù hợp</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Danh mục / quy cách</strong></td>
+                      <td>Bộ nhu yếu phẩm cùng 4 thành phần yêu cầu</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Số lượng</strong></td>
+                      <td>200 bộ sẵn có; chỉ cần thêm 100 bộ chưa phân bổ</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Địa bàn</strong></td>
+                      <td>Kho Đông Hà &rarr; Hải Lăng, trong vùng giao</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Thời gian</strong></td>
+                      <td>Có thể giao 14/10, trước hạn 15/10</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="decision-box">
+                <div class="small-label">
+                  QUYẾT ĐỊNH CỦA BẠN - AI KHÔNG TỰ THỰC HIỆN
+                </div>
+                <div class="btn-group">
+                  <button
+                    onclick="acceptDonor('NL-011 - Quỹ Đồng Hành')"
+                    class="btn btn-green"
+                  >
+                    Chấp nhận
+                  </button>
+                  <button
+                    onclick="showToast('Chỉnh sửa đề xuất', 'info')"
+                    class="btn btn-gray"
+                  >
+                    Chỉnh sửa
+                  </button>
+                  <button
+                    onclick="showToast('Đã từ chối', 'warning')"
+                    class="btn btn-gray text-rose"
+                  >
+                    Từ chối
+                  </button>
+                  <button onclick="triggerAIRanking()" class="btn btn-gray">
+                    Tạo lại
+                  </button>
+                </div>
+                <div class="input-row">
+                  <input
+                    type="text"
+                    id="decisionNote"
+                    value="Đã đối chiếu số lượng và thông tin liên hệ."
+                    class="form-control flex-1"
+                  />
+                  <button onclick="saveDecisionNote()" class="btn btn-dark">
+                    Lưu đề xuất ghép
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột Phải -->
+          <div class="right-col">
+            <div class="card sticky-card">
+              <div class="card-header space-between">
+                <div>
+                  <h2>Phê duyệt phân bổ mới</h2>
+                  <span class="card-subtext"
+                    >PB-038 · Bản nháp · Chưa có hiệu lực</span
+                  >
+                </div>
+                <span class="badge-gray">PB-038</span>
+              </div>
+
+              <form
+                id="allocationForm"
+                onsubmit="handleAllocationSubmit(event)"
+                class="form-stack"
+              >
+                <div class="form-group">
+                  <label>NGUỒN LỰC ĐÃ CHỌN </label>
+                  <input
+                    type="text"
+                    id="selectedDonorInput"
+                    value="NL-011 - Quỹ Đồng Hành"
+                    readonly
+                    class="form-control input-readonly"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>CAM KẾT TÀI TRỢ </label>
+                  <input
+                    type="text"
+                    value="CK-019 · Bản nháp, chưa gửi"
+                    readonly
+                    class="form-control input-readonly"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>SỐ LƯỢNG PHÂN BỔ </label>
+                  <input
+                    type="number"
+                    id="allocationQtyInput"
+                    value="150"
+                    oninput="validateAllocationQty()"
+                    class="form-control input-rose"
+                  />
+                  <div id="qtyWarningText" class="warning-text">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Vượt 50 bộ.
+                    Chỉ còn 100 bộ chưa phân bổ (500 - 400).
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>NGÀY GIAO DỰ KIẾN</label>
+                  <input type="text" value="14/10/2026" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                  <label>ĐIỀU PHỐI PHỤ TRÁCH </label>
+                  <select class="form-control">
+                    <option value="Lê Hà" selected>Lê Hà</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>LÝ DO PHÂN BỔ </label>
+                  <textarea rows="3" required class="form-control">
+Cùng quy cách, có xe giao trong tỉnh trước hạn.</textarea
+                  >
+                </div>
+
+                <div
+                  id="approvalAlertBox"
+                  class="alert-box alert-rose alert-green"
+                >
+                  <strong>Chưa đủ điều kiện phê duyệt</strong>
+                  <p id="approvalAlertDesc">
+                    Giảm số lượng xuống &le; 100 bộ và chờ cam kết CK-019 xác
+                    nhận. Không giữ chỗ thêm khi còn lỗi.
+                  </p>
+                </div>
+
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    onclick="showToast('Đã lưu bản nháp PB-038', 'info')"
+                    class="btn btn-gray flex-1"
+                  >
+                    Lưu bản nháp
+                  </button>
+                  <button type="submit" class="btn btn-teal flex-1">
+                    Phê duyệt
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- File JavaScript riêng -->
+    <script src="webgk.js"></script>
+  </body>
+</html>
